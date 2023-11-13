@@ -3,30 +3,34 @@
 * Copyright 2013-2023 Start Bootstrap
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-clean-blog/blob/master/LICENSE)
 */
+
 window.addEventListener('DOMContentLoaded', () => {
-    let scrollPos = 0;
     const mainNav = document.getElementById('mainNav');
     const headerHeight = mainNav.clientHeight;
-    window.addEventListener('scroll', function() {
+    const themeIcon = document.getElementById('theme-toggle');
+    const searchButton = document.getElementById('searchButton');
+
+    window.addEventListener('scroll', function () {
         const currentTop = document.body.getBoundingClientRect().top * -1;
-        if ( currentTop < scrollPos) {
-            // Scrolling Up
-            if (currentTop > 0 && mainNav.classList.contains('is-fixed')) {
-                mainNav.classList.add('is-visible');
-            } else {
-                console.log(123);
-                mainNav.classList.remove('is-visible', 'is-fixed');
-            }
-        } else {
-            // Scrolling Down
-            mainNav.classList.remove(['is-visible']);
-            if (currentTop > headerHeight && !mainNav.classList.contains('is-fixed')) {
-                mainNav.classList.add('is-fixed');
-            }
+        //down
+        if (currentTop > headerHeight && !mainNav.classList.contains('is-fixed')) {
+            mainNav.classList.add('is-fixed', 'is-visible', 'navbar-dark');
+            searchButton.classList.remove("btn-outline-light");
+            searchButton.classList.add("btn-outline-dark");
+            themeIcon.classList.remove("icon-light");
+            themeIcon.classList.add("icon-dark");
         }
-        scrollPos = currentTop;
+        //up
+        else if (currentTop <= headerHeight && mainNav.classList.contains('is-fixed')) {
+            mainNav.classList.remove('is-fixed', 'is-visible', 'navbar-light');
+            searchButton.classList.remove("btn-outline-dark");
+            searchButton.classList.add("btn-outline-light");
+            themeIcon.classList.remove("icon-dark");
+            themeIcon.classList.add("icon-light");
+        }
     });
-})
+});
+
 
 // Obțineți URL-ul paginii curente
 const currentPageUrl = window.location.href;
@@ -57,31 +61,25 @@ searchInput.addEventListener('keydown', function (event) {
     }
 });
 
-//// Funcția pentru efectuarea căutării
-//function performSearch() {
-//    const searchTerm = searchInput.value;
-
-//    // Aici puteți efectua logica de căutare
-//    // De exemplu, afișați rezultatele în elementul 'searchResults'
-//    window.location.href = 'pagina-rezultate.html?searchTerm=' + encodeURIComponent(searchTerm);
-//}
-
 const contentToSearch = [
-    { title: 'About Me', content: 'This is what I do.', originalPage: 'about.html' },
-    { title: 'Main Content', content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.', originalPage: 'about.html' },
+    { title: 'Visiting Vienna', content: 'Eager to see Schönbrunn Palace, St. Stephen\'s Cathedral or Belvedere Museum?', originalPage: 'post.html' },
+    { title: 'Visiting Paris', content: 'Wandering the streets of Paris to admire the Cathédrale Notre-Dame de Paris, the Eiffel Tower, the Louvre Museum and so much more.', originalPage: 'index.html' },
+    { title: 'Visiting Prague', content: 'Exploring the wonderful Prague Castle, St. Vitus Cathedral, Lobkowicz Palace, the Spanish Synagogue and many more.', originalPage: 'index.html' },
+    { title: 'Visiting Rome', content: 'The Colosseum, the Pantheon, Galleria Borghese, the Roman Forum are just a taste of what waits to be discovered.', originalPage: 'index.html' },
+
     // Adaugă mai multe secțiuni aici
 ];
 function performSearch() {
     const searchTerm = searchInput.value.toLowerCase();
     if (searchTerm === '') {
-        alert('Introduceți un termen de căutare.');
+        alert('Please fill in the search field.');
         return; // Ieși din funcție dacă bara de căutare este goală
     }
     const searchResultsHTML = searchContent(searchTerm);
     const encodedSearchTerm = encodeURIComponent(searchTerm);
 
     //searchResults.innerHTML = searchResultsHTML;
-    window.location.href = `pagina-rezultate.html?searchTerm=${encodedSearchTerm}&results=${encodeURIComponent(searchResultsHTML)}`;
+    window.location.href = `results-page.html?searchTerm=${encodedSearchTerm}&results=${encodeURIComponent(searchResultsHTML)}`;
 
 }
 
@@ -92,7 +90,7 @@ function searchContent(term) {
     );
 
     if (filteredContent.length === 0) {
-        return 'Niciun rezultat găsit.';
+        return '<p>Search results:</p>Nothing was found.';
     }
 
     const resultsHTML = filteredContent.map((item, index) =>
@@ -101,8 +99,9 @@ function searchContent(term) {
         <p>${item.content}</p>
     </div>`
     ).join('');
+    const finalHTML = `<p>Search results:</p>${resultsHTML}`;
 
-    return resultsHTML;
+    return finalHTML;
 }
 
 // script.js
@@ -124,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const themeToggle = document.getElementById("theme-toggle");
     const themeIcon = document.getElementById("theme-icon");
     const body = document.body;
+    const mainNav = document.getElementById("mainNav");
 
     themeToggle.addEventListener("click", function () {
         // Toggle între clasele "light" și "dark" ale corpului
@@ -134,9 +134,32 @@ document.addEventListener("DOMContentLoaded", function () {
         if (body.classList.contains("light")) {
             themeIcon.className = "fas fa-lightbulb";
             themeIcon.style.color = "black"; // sau orice altă culoare pentru light theme
+            document.querySelectorAll(".post-title, .post-subtitle, .post-meta, a").forEach(element => {
+                element.style.color = "white";
+                console.log(element.tagName.toLowerCase());
+                    element.addEventListener("mouseenter", function () {
+                        this.style.color = "#0085A1";
+                        this.style.cursor = "pointer";
+                    });
+                    element.addEventListener("mouseleave", function () {
+                        this.style.color = "white";
+                    });
+                
+            });
         } else {
             themeIcon.className = "fas fa-lightbulb";
             themeIcon.style.color = "white"; // sau orice altă culoare pentru dark theme
+            document.querySelectorAll(".post-title, .post-subtitle, .post-meta, a").forEach(element => {
+                element.style.color = "black";
+                    element.addEventListener("mouseenter", function () {
+                        this.style.color = "#0085A1";
+                        this.style.cursor = "pointer";
+                    });
+                    element.addEventListener("mouseleave", function () {
+                        this.style.color = "black";
+                    });
+                
+            });
         }
     });
 });
