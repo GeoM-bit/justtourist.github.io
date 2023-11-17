@@ -17,6 +17,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-vk5WoKIaWwR/pwFUa3nDh4d0tqkojPeOBKR5/38Cgc0qxl5+qOn83l2X6bwG8Zl+g" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-eUJ9+L/DJ0IS8ThIqqxZj2FF9nDq3EHVUSo0V8u5eG6l2b9/zq2Idp84i3dLv93L" crossorigin="anonymous"></script>
     <link href="css/styles.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZW4QJP46JE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZW4QJP46JE');
+    </script>
 </head>
 <body>
     <!-- Navigation-->
@@ -39,6 +48,7 @@
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Latest visit</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
                 </ul>
+                <button class="btn" style="color: white; outline: none; border:none;" onclick="showHelp()">Help</button>
                 <button id="theme-toggle" class="btn btn-link nav-link icon-light">
                     <i id="theme-icon" class="fa-regular fa-lightbulb"></i>
                 </button>
@@ -151,6 +161,22 @@
             </div>
         </div>
     </footer>
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Need Help?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>If you encounter issues, please contact support@justtourist.com.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--nu scoate astea-->
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

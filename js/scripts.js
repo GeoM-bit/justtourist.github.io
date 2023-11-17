@@ -167,5 +167,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-
+    function showHelp() {
+        // Show the modal when the help button is clicked
+        var helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
+    helpModal.show();
+    }

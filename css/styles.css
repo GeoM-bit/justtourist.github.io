@@ -10868,3 +10868,12 @@ body.dark {
 .iframe-container {
     text-align: center;
 }
+
+.error {
+    color: red;
+}
+
+#successMessage {
+    margin-top: 20px;
+    color: green;
+}
