@@ -62,11 +62,14 @@ searchInput.addEventListener('keydown', function (event) {
 });
 
 const contentToSearch = [
-    { title: 'Visiting Vienna', content: 'Eager to see Schönbrunn Palace, St. Stephen\'s Cathedral or Belvedere Museum?', originalPage: 'post.html' },
-    { title: 'Visiting Paris', content: 'Wandering the streets of Paris to admire the Cathédrale Notre-Dame de Paris, the Eiffel Tower, the Louvre Museum and so much more.', originalPage: 'index.html' },
-    { title: 'Visiting Prague', content: 'Exploring the wonderful Prague Castle, St. Vitus Cathedral, Lobkowicz Palace, the Spanish Synagogue and many more.', originalPage: 'index.html' },
-    { title: 'Visiting Rome', content: 'The Colosseum, the Pantheon, Galleria Borghese, the Roman Forum are just a taste of what waits to be discovered.', originalPage: 'index.html' },
-
+    { title: 'Visiting Vienna', content: 'Eager to see Schönbrunn Palace, St. Stephen\'s Cathedral or Belvedere Museum?', originalPage: 'post.html', index: '0' },
+    { title: 'Visiting Paris', content: 'Wandering the streets of Paris to admire the Cathédrale Notre-Dame de Paris, the Eiffel Tower, the Louvre Museum and so much more.', originalPage: 'index.html', index: '1' },
+    { title: 'Visiting Prague', content: 'Exploring the wonderful Prague Castle, St. Vitus Cathedral, Lobkowicz Palace, the Spanish Synagogue and many more.', originalPage: 'index.html', index: '2' },
+    { title: 'Visiting Rome', content: 'The Colosseum, the Pantheon, Galleria Borghese, the Roman Forum are just a taste of what waits to be discovered.', originalPage: 'index.html', index: '3' },
+    { title: 'Welcome to Just Tourist', content: 'Your Passport to European Adventures!', originalPage: 'about.html', index: '4' },
+    { title: 'Who Am I?', content: 'I am an avid traveler, storyteller, and culture enthusiast dedicated to sharing the magic of European destinations...', originalPage: 'about.html', index: '5' },
+    { title: 'What Sets Me Apart', content: 'I believe in going beyond the typical tourist attractions. My blog delves...', originalPage: 'about.html', index: '6' },
+    { title: 'Join Me on the Adventure!', content: 'Whether you\'re an armchair traveler, a seasoned globetrotter, or someone planning your first European escapade...', originalPage: 'about.html', index: '7' }
     // Adaugă mai multe secțiuni aici
 ];
 function performSearch() {
@@ -93,8 +96,8 @@ function searchContent(term) {
         return '<p>Search results:</p>Nothing was found.';
     }
 
-    const resultsHTML = filteredContent.map((item, index) =>
-        `<div class="search-result-item" data-index="${index}">
+    const resultsHTML = filteredContent.map((item) =>
+        `<div class="search-result-item" data-index="${item.index}">
         <h3>${item.title}</h3>
         <p>${item.content}</p>
     </div>`
