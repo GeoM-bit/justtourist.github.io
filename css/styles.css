@@ -10864,3 +10864,7 @@ body.dark {
 .icon-light {
     color: #f8f7f7;
 }
+
+.iframe-container {
+    text-align: center;
+}
