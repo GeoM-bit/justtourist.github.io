@@ -69,8 +69,15 @@ const contentToSearch = [
     { title: 'Welcome to Just Tourist', content: 'Your Passport to European Adventures!', originalPage: 'about.html', index: '4' },
     { title: 'Who Am I?', content: 'I am an avid traveler, storyteller, and culture enthusiast dedicated to sharing the magic of European destinations...', originalPage: 'about.html', index: '5' },
     { title: 'What Sets Me Apart', content: 'I believe in going beyond the typical tourist attractions. My blog delves...', originalPage: 'about.html', index: '6' },
-    { title: 'Join Me on the Adventure!', content: 'Whether you\'re an armchair traveler, a seasoned globetrotter, or someone planning your first European escapade...', originalPage: 'about.html', index: '7' }
-    // Adaugă mai multe secțiuni aici
+    { title: 'Join Me on the Adventure!', content: 'Whether you\'re an armchair traveler, a seasoned globetrotter, or someone planning your first European escapade...', originalPage: 'about.html', index: '7' },
+    { title: 'Discover Vienna', content: 'A Guide to Must-Visit Attractions', originalPage: 'post.html', index: '8' },
+    { title: '1. Schönbrunn Palace: A Royal Marvel', content: 'No visit to Vienna is complete without exploring the opulent Schönbrunn Palace... ', originalPage: 'post.html', index: '9' },
+    { title: '2. St. Stephen\'s Cathedral: Gothic Grandeur', content: 'Dominating Vienna\'s skyline, St.Stephen\'s Cathedral is an architectural masterpiece...', originalPage: 'post.html', index: '10' },
+    { title: '3. Belvedere Museum: Art and Culture', content: 'Art enthusiasts will find solace in the Belvedere Museum, home to an impressive collection of Austrian art...', originalPage: 'post.html', index: '11' },
+    { title: '4. Hofburg Palace: Imperial Residences', content: 'Hofburg Palace, the former imperial palace, is a vast complex that chronicles Vienna\'s imperial history.', originalPage: 'post.html', index: '12' },
+    { title: '5. The Vienna State Opera: A Symphony of Performances', content: 'For a taste of Vienna\'s cultural heartbeat, attend a performance at the Vienna State Opera', originalPage: 'post.html', index: '13' },
+    { title: '6. Naschmarkt: Culinary Delights', content: 'Vienna\'s Naschmarkt is a paradise for food enthusiasts.This bustling market offers a diverse array...', originalPage: 'post.html', index: '14' },
+    { title: 'Contact', content: 'I\'m excited to connect with you through my tourist blog. Whether you have questions, suggestions...', originalPage: 'contact.html', index: '15' },
 ];
 function performSearch() {
     const searchTerm = searchInput.value.toLowerCase();
@@ -124,35 +131,27 @@ function scrollToBottom() {
 
 document.addEventListener("DOMContentLoaded", function () {
     const themeToggle = document.getElementById("theme-toggle");
-    const themeIcon = document.getElementById("theme-icon");
     const body = document.body;
-    const mainNav = document.getElementById("mainNav");
 
     themeToggle.addEventListener("click", function () {
-        // Toggle între clasele "light" și "dark" ale corpului
         body.classList.toggle("light");
         body.classList.toggle("dark");
-
-        // Schimbă clasa și culoarea iconiței în funcție de tema curentă
         if (body.classList.contains("light")) {
-            themeIcon.className = "fas fa-lightbulb";
-            themeIcon.style.color = "black"; // sau orice altă culoare pentru light theme
-            document.querySelectorAll(".post-title, .post-subtitle, .post-meta, a").forEach(element => {
+            document.querySelectorAll(".post-title, .post-subtitle, .post-meta, .author").forEach(element => {
                 element.style.color = "white";
-                console.log(element.tagName.toLowerCase());
                     element.addEventListener("mouseenter", function () {
                         this.style.color = "#0085A1";
                         this.style.cursor = "pointer";
                     });
                     element.addEventListener("mouseleave", function () {
                         this.style.color = "white";
-                    });
-                
+                    });              
             });
+            document.querySelectorAll(".table").forEach(element => {
+                element.style.color = "white";
+            })          
         } else {
-            themeIcon.className = "fas fa-lightbulb";
-            themeIcon.style.color = "white"; // sau orice altă culoare pentru dark theme
-            document.querySelectorAll(".post-title, .post-subtitle, .post-meta, a").forEach(element => {
+            document.querySelectorAll(".post-title, .post-subtitle, .post-meta, .author").forEach(element => {
                 element.style.color = "black";
                     element.addEventListener("mouseenter", function () {
                         this.style.color = "#0085A1";
@@ -160,9 +159,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                     element.addEventListener("mouseleave", function () {
                         this.style.color = "black";
-                    });
-                
+                    });             
             });
+            document.querySelectorAll(".table").forEach(element => {
+                element.style.color = "black";
+            })
         }
     });
 });
