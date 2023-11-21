@@ -12,7 +12,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', function () {
         const currentTop = document.body.getBoundingClientRect().top * -1;
-        //down
         if (currentTop > headerHeight && !mainNav.classList.contains('is-fixed')) {
             mainNav.classList.add('is-fixed', 'is-visible', 'navbar-dark');
             searchButton.classList.remove("btn-outline-light");
@@ -20,7 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
             themeIcon.classList.remove("icon-light");
             themeIcon.classList.add("icon-dark");
         }
-        //up
         else if (currentTop <= headerHeight && mainNav.classList.contains('is-fixed')) {
             mainNav.classList.remove('is-fixed', 'is-visible', 'navbar-light');
             searchButton.classList.remove("btn-outline-dark");
@@ -31,14 +29,10 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
-// Obțineți URL-ul paginii curente
 const currentPageUrl = window.location.href;
 
-// Obțineți toate link-urile din bara de navigație
 const navLinks = document.querySelectorAll('.nav-item a');
 
-// Parcurgeți toate link-urile și actualizați clasa 'active'
 navLinks.forEach(link => {
     if (currentPageUrl.includes(link.getAttribute('href'))) {
         link.parentElement.classList.add('active');
@@ -47,17 +41,14 @@ navLinks.forEach(link => {
     }
 });
 
-// Obțineți elementele DOM relevante
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const searchResults = document.querySelector('.search-results');
 
-// Adăugați un eveniment de căutare atunci când se apasă butonul sau Enter
 searchButton.addEventListener('click', performSearch);
 searchInput.addEventListener('keydown', function (event) {
     if (event.key === "Enter") {
-        event.preventDefault(); // Oprește comportamentul implicit al evenimentului keyup
-        performSearch();
+        event.preventDefault(); 
     }
 });
 
@@ -83,12 +74,10 @@ function performSearch() {
     const searchTerm = searchInput.value.toLowerCase();
     if (searchTerm === '') {
         alert('Please fill in the search field.');
-        return; // Ieși din funcție dacă bara de căutare este goală
+        return; 
     }
     const searchResultsHTML = searchContent(searchTerm);
     const encodedSearchTerm = encodeURIComponent(searchTerm);
-
-    //searchResults.innerHTML = searchResultsHTML;
     window.location.href = `results-page.html?searchTerm=${encodedSearchTerm}&results=${encodeURIComponent(searchResultsHTML)}`;
 
 }
@@ -114,7 +103,6 @@ function searchContent(term) {
     return finalHTML;
 }
 
-// script.js
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -168,8 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-    function showHelp() {
-        // Show the modal when the help button is clicked
-        var helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
+function showHelp() {
+    var helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
     helpModal.show();
-    }
+}

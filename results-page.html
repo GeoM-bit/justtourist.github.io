@@ -64,26 +64,17 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <!-- pagina-rezultate.html -->
-
                     <div class="search-results-container">
                         <script>
-                            // Obține termenul de căutare și rezultatele din query string
                             const searchParams = new URLSearchParams(window.location.search);
                             const searchTerm = searchParams.get('searchTerm');
                             const resultsHTML = decodeURIComponent(searchParams.get('results'));
-
-                            // Afișează rezultatele în containerul corespunzător
                             document.querySelector('.search-results-container').innerHTML = resultsHTML;
-
-                            // Adăugă un event listener pentru a naviga înapoi la pagina de origine
                             const resultItems = document.querySelectorAll('.search-result-item');
                             resultItems.forEach(item => {
                                 item.addEventListener('click', function () {
                                     const index = this.getAttribute('data-index');
-                                    console.log(index);
-                                    console.log(contentToSearch);
-                                    const originalPage = contentToSearch[index].originalPage; // Adaugă proprietatea originalPage la obiectele din contentToSearch pentru a ține evidența paginii de origine
+                                    const originalPage = contentToSearch[index].originalPage; 
                                     window.location.href = originalPage;
                                 });
                             });
@@ -92,10 +83,7 @@
                 </div>
             </div>
         </div>
-        <!-- Buton pentru sus -->
         <button class="up-down-button" id="scrollToTopButton" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
-
-        <!-- Buton pentru jos -->
         <button class="up-down-button" id="scrollToBottomButton" onclick="scrollToBottom()"><i class="fa-solid fa-arrow-down"></i></button>
     </main>
     <!-- Footer-->
