@@ -160,3 +160,41 @@ function showHelp() {
     var helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
     helpModal.show();
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Oprire comportamentul implicit de trimitere a formularului
+
+        // Poți adăuga aici cod pentru trimiterea datelor către server, dacă este necesar
+
+        // Mesaj de succes
+        var successMessage = document.createElement('div');
+        successMessage.classList.add('alert', 'alert-success', 'mt-3', 'position-relative', 'success-message'); // Adăugăm clase pentru spațiere și poziționare relativă
+        successMessage.innerHTML = '<p class="m-0">Form submitted successfully! Thank you for reaching out.</p>';
+
+        // Buton de închidere
+        var closeButton = document.createElement('button');
+        closeButton.setAttribute('type', 'button');
+        closeButton.classList.add('btn-close', 'position-absolute', 'top-0', 'end-0', 'm-2'); // Adăugăm clase pentru poziționare absolută
+        closeButton.setAttribute('aria-label', 'Close');
+        closeButton.addEventListener('click', function () {
+            successMessage.style.display = 'none';
+        });
+
+        // Adaugă butonul de închidere și mesajul de succes în pagina HTML
+        document.getElementById('contactForm').appendChild(successMessage);
+        successMessage.appendChild(closeButton);
+
+        // Resetarea formularului după trimitere
+        document.getElementById('contactForm').reset();
+        // Închide automat notificarea după 3 secunde
+        setTimeout(function () {
+            successMessage.classList.add('fade-out');
+            setTimeout(function () {
+                successMessage.style.display = 'none';
+                successMessage.classList.remove('fade-out'); // Eliminăm clasa pentru a pregăti pentru viitoare afișări
+            }, 1000);
+        }, 3000);
+    
+    });
+});

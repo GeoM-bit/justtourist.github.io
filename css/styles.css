@@ -10862,3 +10862,12 @@ body.dark {
 .iframe-container {
     text-align: center;
 }
+
+.success-message p {
+    font-size: 14px; /* Poți ajusta dimensiunea textului la nevoie */
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out; /* Durata și funcția de interpolare pentru efectul de fade-out */
+}
